@@ -1,6 +1,7 @@
 import numpy as np
 
 INPUT_PATH = "inputs/input.txt"
+BATTERIES_PER_ROW = 12
 
 def part_one(input_file):
     """Get batteries for the North Pole elevator
@@ -31,5 +32,45 @@ def part_one(input_file):
         print(local_joltage)
         print(batteries)
     return total_joltage
-    
-print("Answer: " +str(part_one(INPUT_PATH)))
+
+def part_two(input_file):
+    """Get batteries for the North Pole elevator
+    Generalization of the part one problem for N batteries per row
+    """
+    with open(input_file, 'r') as f:
+        lines = f.read().splitlines()
+    total_joltage = 0
+    for line in lines:
+        batteries = np.array([digit for digit in line], dtype ='int')
+        indexes = battery_picker(batteries)
+        joltage = sum(10**(BATTERIES_PER_ROW-1-i)*batteries[indexes[i]] 
+                      for i in range(BATTERIES_PER_ROW))
+        print(joltage)
+        total_joltage += joltage
+    return total_joltage
+            
+            
+
+def battery_picker(array, btr_nbr = BATTERIES_PER_ROW):
+    """Return a list of the indexes of the batteries to pick for max joltage
+    1. Pick the first battery. In the case of 12 batteries to pick, it's the
+        battery with the highest voltage that is no less than 12 position from
+        the end of the line.
+    2. Record the index
+    3. Offset the slice of the iterable to the right - search for the second
+        battery ON THE RIGHT of the first one in the array
+    2. Pick the second battery and subsequent batteries (same constraints)
+    """
+    offset = 0 #start the slice at this index
+    ignore_from = len(array)-(btr_nbr-1) #end the slice at this index
+    indexes = []
+    for n in range(btr_nbr):
+        pick = np.argmax(array[offset:ignore_from])
+        #note that the pick is relative to the slice
+        indexes.append(pick+offset) #pick relative to the entire list
+        offset = offset+pick+1 # +1 because the same battery cannot be picked again
+        ignore_from +=1
+    return indexes
+        
+
+print("Answer: " +str(part_two(INPUT_PATH)))
