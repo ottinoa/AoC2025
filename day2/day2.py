@@ -1,5 +1,4 @@
 import re
-from math import log10
 
 INPUT_PATH = "inputs/input.txt"
 
