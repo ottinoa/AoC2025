@@ -17,7 +17,7 @@ def _connect_closest(array, k = EDGES_NBR):
     1. Fill an adjacency matrix with the euclidian distance between each vector
         (Calculate only once per pair of vector - undirected graph)
     2. Return the k smallest distances as a list of edges (tuples)
-    CAVE : fails if the Kth smallest distance is >9999
+    CAVE : fails if the Kth smallest distance is >99999999
     """
     adj_matrix = np.full([array.shape[0], array.shape[0]], 99999999)
     for idx1, vec1 in enumerate(array):
@@ -30,7 +30,7 @@ def _connect_closest(array, k = EDGES_NBR):
     return edges
 
 def _connect_closest_p2(array):
-    distances = {} #keys : euclidian distances, values : tuple of vector idx
+    distances = {} #keys : euclidian distances, values : tuples of vector idx
     boxes_connected = set()
     for idx1, vec1 in enumerate(array):
         for idx2, vec2 in enumerate(array[idx1+1:]):

@@ -1,0 +1,8 @@
+[project]
+name = "day6"
+version = "0.1.0"
+requires-python = ">=3.13"
+dependencies = [
+    "itertools",
+    "spyder-kernels>=3.1.2",
+]
