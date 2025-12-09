@@ -3,7 +3,7 @@ from itertools import groupby
 import math
 
 INPUT_PATH = "inputs/input.txt"
-INPUT_ROWS = 4
+INPUT_ROWS = 4 #3 rows in example, 4 rows in input
 
 def part_one(input_file, n = INPUT_ROWS):
     numbers = np.loadtxt(input_file, dtype = 'int', max_rows = n).transpose()
