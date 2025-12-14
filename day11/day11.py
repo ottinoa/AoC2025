@@ -40,7 +40,6 @@ def part_one():
                ways[neig] = 1
        else:
            if node in ways:
-               print(node)
                for neig in G[node]:
                    if neig not in ways:
                        ways[neig] = ways[node]
@@ -63,7 +62,6 @@ def part_two():
                     ways[neig] = 1
             else:
                 if node in ways:
-                    print(node)
                     for neig in G[node]:
                         if neig not in ways:
                             ways[neig] = ways[node]
@@ -72,9 +70,7 @@ def part_two():
         return ways[n2]
     
     #find which of the DAC or the fast fourier transform comes first
-    stops = (0,0)
     for node in topo_order:
-        print(node)
         if node == 'dac':
             stops = ('dac', 'fft')
             break
