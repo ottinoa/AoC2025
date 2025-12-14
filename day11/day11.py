@@ -79,11 +79,7 @@ def part_two():
             break
     
     return path_between('svr',stops[0])*path_between(stops[0], stops[1])*path_between(stops[1],'out')
-        
-       
-            
-    
-    
+ 
 
 if __name__ == "__main__":
     print(f"Answer: {part_two()}")
